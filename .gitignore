@@ -1,0 +1,9 @@
+dist
+*_env/
+__pycache__/
+node_modules/
+.quasar/
+src-ssr/
+.vagrant
+docker-compose.yml
+env

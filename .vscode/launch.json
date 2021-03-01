@@ -1,0 +1,44 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Django",
+            "type": "python",
+            "request": "launch",
+            "envFile": "${workspaceFolder}/env/.env.dev",
+            "program": "${workspaceFolder}/api/manage.py",
+            "args": [
+                "runserver",
+                "--noreload",
+                "--nothreading"
+            ],
+            "django": true,
+        },
+        {
+            "name": "Run Unit Tests",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "${workspaceFolder}/api/tests/"
+            ],
+            "env": {
+                "DJANGO_SETTINGS_MODULE": "api.config.settings",
+                "SQL_ENGINE": "django.db.backends.sqlite3",
+                "SQL_DATABASE": ":memory:",
+            }
+        },
+        {
+            "name": "Run Users Script",
+            "type": "python",
+            "request": "launch",
+            "envFile": "${workspaceFolder}/env/.env.dev",
+            "program": "${workspaceFolder}/api/manage.py",
+            "args": [
+                "runscript", "query_madis"
+            ],
+            "django": true,
+        },
+    ]
+}
+
