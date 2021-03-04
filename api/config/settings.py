@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from dotenv import load_dotenv
-load_dotenv()
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +26,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv('DEBUG') == 'true'
 
-ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS'), 'localhost', 'api.skewt.org', 'api.skewt.johnkealy.com', '127.0.0.1']
+ALLOWED_HOSTS = [os.getenv('DJANGO_ALLOWED_HOSTS'), 'localhost', '127.0.0.1']
 
 
 

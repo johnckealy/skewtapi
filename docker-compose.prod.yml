@@ -13,7 +13,7 @@ volumes:
 services:
 
     # Django app
-    djangobackend:
+    django:
         restart: always
         build:
             context: ${ROOT_FOLDER}/api

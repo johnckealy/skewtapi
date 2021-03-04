@@ -36,8 +36,11 @@ class NearestAPIView(APIView):
             lon = d(request.GET['lon'])
             available = Radiosonde.objects.filter(sonde_validtime__gt=(timezone.now() - timezone.timedelta(days=1)))
             latlon = {'lat': lat, 'lon': lon}
-            nearest = Haversine.closest(available, latlon)
-            serializer = RadiosondeSerializer(nearest)
-        return Response(serializer.data) 
+            if available:
+                nearest = Haversine.closest(available, latlon)
+                serializer = RadiosondeSerializer(nearest)
+            else:
+                return Response({ 'message': 'No Sondes less than 1 day old are available.' })
+        return Response(serializer.data)
 
 

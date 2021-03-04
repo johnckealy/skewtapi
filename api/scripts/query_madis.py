@@ -60,6 +60,7 @@ def RemNaN_and_Interp(raob):
     U_allstns = []; V_allstns = [];  wmo_ids_allstns = []
 
     for i,stn in enumerate(raob['Psig']):
+
         Ps = raob['Psig'][i]
         Ts = raob['Tsig'][i]
         Tds = raob['Tdsig'][i]
@@ -106,13 +107,13 @@ def RemNaN_and_Interp(raob):
 
                 f = interp1d(Ptd, Td, kind='linear', fill_value="extrapolate")
                 Td = f(P)
+                Td[P<Ptd[-1]] = np.nan
                 f = interp1d(Pm, u, kind='linear', fill_value="extrapolate")
                 U = f(P)
+                U[P<Pm[-1]] = np.nan
                 f = interp1d(Pm, v, kind='linear', fill_value="extrapolate")
                 V = f(P)
-
-                U = U*1.94384
-                V = V*1.94384
+                V[P<Pm[-1]] = np.nan
 
                 Pqc, Tqc, Tdqc, Uqc, Vqc = basic_qc(P, T, Td, U, V)
 
