@@ -21,6 +21,4 @@ Vagrant.configure("2") do |config|
     mkdir /root/.ssh/
     touch /root/.ssh/authorized_keys
   SHELL
-
-
 end
