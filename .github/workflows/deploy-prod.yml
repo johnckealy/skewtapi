@@ -35,9 +35,5 @@ jobs:
         key: ${{ secrets.SSHKEY }}
         port: ${{ secrets.PORT }}
         command_timeout: 200m
-        script: cd skewtapi/ && \
-                gpg --quiet --batch --yes --decrypt \
-                --passphrase=${{ secrets.DOTENV_ENCRYPTION_KEY }} \
-                env.tar.gpg | tar -x && \
-                make deploy-prod
+        script: cd skewtapi/ && gpg --quiet --batch --yes --decrypt --passphrase=${{ secrets.DOTENV_ENCRYPTION_KEY }} env.tar.gpg | tar -x && make deploy-prod
 
