@@ -7,3 +7,4 @@ src-ssr/
 .vagrant
 docker-compose.yml
 env
+api/django
