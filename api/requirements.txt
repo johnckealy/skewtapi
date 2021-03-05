@@ -4,7 +4,10 @@ django-widget-tweaks
 django-webpack-loader 
 gunicorn
 psycopg2-binary
-python-dotenv
+celery==4.4.7
+redis
+django-celery-beat
+django-celery-results
 netCDF4
 django-cors-headers
 django-extensions
