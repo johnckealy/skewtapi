@@ -21,6 +21,9 @@ deploy-prod: env-prod env-sub
 	echo "Building ${ENVIRONMENT} Environment"
 	docker-compose up --build -d
 
+collectstatic: env-prod
+	$(IN_ENV) && python $(DJANGO_MANAGE) collectstatic
+
 build-python:
 	virtualenv -p $(PYTHON) $(ENV_DIR)
 	$(IN_ENV) && pip3 install -r api/requirements.txt

@@ -8,3 +8,4 @@ src-ssr/
 docker-compose.yml
 env
 api/django
+static/

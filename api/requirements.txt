@@ -12,3 +12,4 @@ netCDF4
 django-cors-headers
 django-extensions
 scipy
+whitenoise
