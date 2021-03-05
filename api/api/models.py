@@ -96,3 +96,8 @@ class Haversine:
     @classmethod
     def closest(cls, data, v):
         return min(data, key=lambda p: cls.distance(d(v['lat']), d(v['lon']), p.lat, p.lon))
+
+
+
+class HitCounter(models.Model):
+    hit_count = models.IntegerField(default=0)

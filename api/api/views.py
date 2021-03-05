@@ -5,7 +5,7 @@ from django.utils import timezone
 from django.shortcuts import render
 from decimal import Decimal as d
 
-from api.models import Radiosonde, Haversine
+from api.models import Radiosonde, Haversine, HitCounter
 from api.serializers import RadiosondeSerializer, AvailableSerializer
 from rest_framework.generics import get_object_or_404
 
@@ -32,6 +32,10 @@ class AvailableAPIView(APIView):
 class NearestAPIView(APIView):
     def get(self, request):
         if request.method == 'GET':
+            count = HitCounter.objects.first()
+            count.hit_count += 1    # Hit counter to keep
+            count.save()            # track of needed resources
+
             lat = d(request.GET['lat'])
             lon = d(request.GET['lon'])
             available = Radiosonde.objects.filter(sonde_validtime__gt=(timezone.now() - timezone.timedelta(days=1)))
