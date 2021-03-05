@@ -16,7 +16,7 @@ fi
 # python entry point commands go here
 python manage.py migrate
 python manage.py collectstatic --noinput
-# python manage.py runscript initialize_stations
+python manage.py runscript initialize_stations
 # python manage.py runscript query_madis
 
 exec "$@"
