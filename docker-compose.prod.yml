@@ -27,20 +27,20 @@ services:
         env_file:
             - ${ROOT_FOLDER}/env/.env.${ENVIRONMENT}
         depends_on:
-            - db
+            - db-st
         networks:
             - ${CADDY_NETWORK_NAME}
 
 
     # Task runners
-    redis:
+    redis-st:
         restart: always
         image: "redis:alpine"
         restart: always
         networks:
             - ${CADDY_NETWORK_NAME}
 
-    celery:
+    celery-st:
         restart: always
         build:
             context: ${ROOT_FOLDER}/api
@@ -50,17 +50,17 @@ services:
             - ${ROOT_FOLDER}/env/.env.${ENVIRONMENT}
             - ${ROOT_FOLDER}/env/.env.db
         environment:
-            - SQL_HOST=db
+            - SQL_HOST=db-st
             - REDIS_URL=redis://redis:6379/1
         depends_on:
-            - db
-            - redis
+            - db-st
+            - redis-st
             - django
         networks:
             - ${CADDY_NETWORK_NAME}
 
     # Django database
-    db:
+    db-st:
         restart: always
         image: postgres:12.0-alpine
         volumes:
